@@ -5,7 +5,7 @@
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
       {{{get_emoji}}}
-      <a href="/project/{{blogPost.id}}">{{blogPost.title}}</a>
+      <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
     </h2>
     <p>Created by {{blogPost.user.name}} on {{format_date blogPost.dateCreated}}</p>
   </div>

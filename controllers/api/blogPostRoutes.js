@@ -35,4 +35,12 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:id', (req, res) => {
+  BlogPost.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  });
+});
+
 module.exports = router;
