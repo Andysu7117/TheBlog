@@ -11,10 +11,10 @@
   {{#each blogPosts as |blogPost|}}
   <div class="row mb-4 project">
     <div class="card mb-4">
+      <div class="card-header">
+        <h5 class="card-title"><a href="/blogPost/{{blogPost.id}}" class="no-underline">{{blogPost.title}}</a></h5>
+      </div>
       <div class="card-body">
-        <h5 class="card-title">
-          <a href="/blogPost/{{blogPost.id}}">{{blogPost.title}}</a>
-        </h5>
         <p class="card-text">{{blogPost.description}}</p>
         <p class="card-text">
           <small class="text-muted">Created by {{blogPost.user.name}} on {{format_date blogPost.dateCreated}}</small>
