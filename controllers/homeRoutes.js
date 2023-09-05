@@ -50,6 +50,11 @@ router.get('/blogPost/:id', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return;
+  }
+
   try {
     // Fetch posts only from the logged-in user
     const blogPostData = await BlogPost.findAll({
@@ -66,9 +71,14 @@ router.get('/profile', async (req, res) => {
 
     const blogPosts = blogPostData.map((post) => post.get({ plain: true }));
 
+    // Fetch the User data for the logged-in user
+    const userData = await User.findByPk(req.session.user_id);
+    const user = userData.get({ plain: true });
+
     // Render the profile page
     res.render('profile', {
       blogPosts,
+      name: user.name, // Pass the name attribute
       logged_in: req.session.logged_in,
     });
   } catch (err) {

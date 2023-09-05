@@ -1,4 +1,5 @@
-header, .project:not(:last-child) {
+header,
+.project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
@@ -17,8 +18,17 @@ header, .project:not(:last-child) {
   text-decoration: underline;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+.navbar {
+  color: rgb(224, 254, 99);
+}
+
+/* Post Card */
+.card {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.no-underline {
+  color: aliceblue;
+  text-decoration: none;
 }

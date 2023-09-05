@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Save changes
-  const saveButton = document.getElementById('save-changes');
-  saveButton.addEventListener('click', async function () {
+  const saveButton = document.getElementById('edit-modal');
+  saveButton.addEventListener('submit', async function () {
     const editForm = document.getElementById('edit-form');
     const postId = editForm.getAttribute('data-id');
     const newTitle = document.getElementById('edit-title').value;

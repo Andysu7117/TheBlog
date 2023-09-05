@@ -1,6 +1,10 @@
-<div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
-  <p>{{description}}</p>
-  <p>Posted by {{user.name}} on {{format_date dateCreated}}</p>
+<div class="card text-center">
+  <div class="card-header">
+    Posted by {{user.name}} on {{format_date dateCreated}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{{get_emoji}}}</p>
+    <p class="card-text">{{description}}</p>
+  </div>
 </div>
