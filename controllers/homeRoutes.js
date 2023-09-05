@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
     const blogPosts = blogPostData.map((project) =>
       project.get({ plain: true })
     );
-
     // Pass serialized data and session flag into template
     res.render('homepage', {
       blogPosts,
@@ -41,7 +40,6 @@ router.get('/blogPost/:id', async (req, res) => {
     });
 
     const blogPost = blogPostData.get({ plain: true });
-
     res.render('blogPost', {
       ...blogPost,
       logged_in: req.session.logged_in,
@@ -51,19 +49,27 @@ router.get('/blogPost/:id', async (req, res) => {
   }
 });
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/profile', async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: BlogPost }],
+    // Fetch posts only from the logged-in user
+    const blogPostData = await BlogPost.findAll({
+      where: {
+        userId: req.session.user_id,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
     });
 
-    const user = userData.get({ plain: true });
+    const blogPosts = blogPostData.map((post) => post.get({ plain: true }));
 
+    // Render the profile page
     res.render('profile', {
-      ...user,
-      logged_in: true,
+      blogPosts,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
