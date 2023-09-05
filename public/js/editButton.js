@@ -18,13 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Save changes
-  const saveButton = document.getElementById('edit-modal');
-  saveButton.addEventListener('submit', async function () {
+  async function handleUpdate() {
     const editForm = document.getElementById('edit-form');
     const postId = editForm.getAttribute('data-id');
     const newTitle = document.getElementById('edit-title').value;
     const newContent = document.getElementById('edit-content').value;
+
     // Make a PUT request to update the post
     try {
       const response = await fetch(`/api/blogPost/${postId}`, {
@@ -45,5 +44,16 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Error:', err);
     }
     editModal.hide();
+  }
+
+  // Save changes through button click
+  const saveButton = document.getElementById('save-changes');
+  saveButton.addEventListener('click', handleUpdate);
+
+  // Save changes through form submit
+  const editForm = document.getElementById('edit-form');
+  editForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    handleUpdate(); // Call the update function
   });
 });
