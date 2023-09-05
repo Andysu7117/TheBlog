@@ -5,30 +5,26 @@
 </div>
 
 {{#if blogPosts.length}}
-<div class="col-md-6 project-list">
-  <h3>Your Posts:</h3>
+<h3>Your Posts:</h3>
 
-  {{#each blogPosts as |blogPost|}}
-  <div class="row mb-4 project">
-    <div class="card mb-4">
-      <div class="card-header">
-        <h5 class="card-title"><a href="/blogPost/{{blogPost.id}}" class="no-underline">{{blogPost.title}}</a></h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">{{blogPost.description}}</p>
-        <p class="card-text">
-          <small class="text-muted">Created by {{blogPost.user.name}} on {{format_date blogPost.dateCreated}}</small>
-        </p>
-        <!-- Wrap buttons in a single div -->
-        <div class="d-flex justify-content-start">
-          <button class="delete-btn btn btn-sm btn-danger" style="margin-right: 10px;" data-id="{{blogPost.id}}">Delete</button>
-          <button class="edit-btn btn btn-sm btn-danger" data-id="{{blogPost.id}}" data-title="{{blogPost.title}}" data-description="{{blogPost.description}}">Edit</button>
-        </div>
-      </div>
+{{#each blogPosts as |blogPost|}}
+<div class="card mb-4">
+  <div class="card-header">
+    <h5 class="card-title"><a href="/blogPost/{{blogPost.id}}" class="no-underline">{{blogPost.title}}</a></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{blogPost.description}}</p>
+    <p class="card-text">
+      <small class="text-muted">Created by {{blogPost.user.name}} on {{format_date blogPost.dateCreated}}</small>
+    </p>
+    <!-- Wrap buttons in a single div -->
+    <div class="d-flex justify-content-start">
+      <button class="delete-btn btn btn-sm btn-danger" style="margin-right: 10px;" data-id="{{blogPost.id}}">Delete</button>
+      <button class="edit-btn btn btn-sm btn-danger" data-id="{{blogPost.id}}" data-title="{{blogPost.title}}" data-description="{{blogPost.description}}">Edit</button>
     </div>
   </div>
-  {{/each}}
 </div>
+{{/each}}
 {{/if}}
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
