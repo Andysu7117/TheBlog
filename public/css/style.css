@@ -32,3 +32,10 @@ header,
   color: aliceblue;
   text-decoration: none;
 }
+
+.button {
+  background-color: rgb(138, 152, 117);
+  opacity: 70%;
+  color: white;
+  border: none;
+}

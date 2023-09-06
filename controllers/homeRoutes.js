@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPost, User } = require('../models');
+const { BlogPost, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -36,13 +36,31 @@ router.get('/blogPost/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Comment,
+          attributes: ['id', 'comment', 'userId'],
+          include: [
+            {
+              model: User,
+              attributes: ['name'],
+            },
+          ],
+        },
       ],
     });
 
     const blogPost = blogPostData.get({ plain: true });
+
+    // Add 'isOwnComment' field to each comment
+    if (blogPost.comments) {
+      for (const comment of blogPost.comments) {
+        comment.isOwnComment = req.session.user_id === comment.userId;
+      }
+    }
+
     res.render('blogPost', {
       ...blogPost,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in, // Changed 'logged_in' to 'loggedIn' to match Handlebars
     });
   } catch (err) {
     res.status(500).json(err);
