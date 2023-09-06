@@ -92,7 +92,7 @@ router.get('/profile', async (req, res) => {
     // Fetch the User data for the logged-in user
     const userData = await User.findByPk(req.session.user_id);
     const user = userData.get({ plain: true });
-
+    console.log(blogPosts);
     // Render the profile page
     res.render('profile', {
       blogPosts,

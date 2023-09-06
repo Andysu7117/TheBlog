@@ -14,6 +14,9 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('#delete-button')
-  .addEventListener('click', delButtonHandler);
+document.addEventListener('DOMContentLoaded', (event) => {
+  const deleteButtons = document.querySelectorAll('.delete-btn');
+  deleteButtons.forEach((button) => {
+    button.addEventListener('click', delButtonHandler);
+  });
+});
