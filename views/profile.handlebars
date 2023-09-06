@@ -19,7 +19,9 @@
     </p>
     <!-- Wrap buttons in a single div -->
     <div class="d-flex justify-content-start">
-      <button class="btn btn-sm btn-danger delete-btn" style="margin-right: 10px;" data-id="{{blogPost.id}}">Delete</button>
+      <button class="btn btn-sm btn-danger delete-btn" style="margin-right: 10px;" data-id="{{blogPost.id}}">
+        <img src="/images/icons8-delete-50.png" alt="delete_icon" data-id={{id}} style="width: 20px; height: 20px;">
+      </button>
       <button class="edit-btn btn btn-sm btn-danger" data-id="{{blogPost.id}}" data-title="{{blogPost.title}}" data-description="{{blogPost.description}}">Edit</button>
     </div>
   </div>
